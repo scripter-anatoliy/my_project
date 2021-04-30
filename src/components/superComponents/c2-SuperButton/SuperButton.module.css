@@ -1,0 +1,21 @@
+.default {
+    appearance: none;
+    border: 0;
+    border-radius: 5px;
+    background: #436fcd;
+    color: #fff;
+    padding: 3px 6px;
+    font-size: 12px;
+    margin: 2px;
+}
+.default:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px #cbd6ee;
+}
+.default:hover {
+    background: #1d49aa;
+    cursor: pointer;
+}
+.red {
+    background: red;
+}

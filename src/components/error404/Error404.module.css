@@ -1,0 +1,29 @@
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    background-color: #e9e6ff;
+    height: 100vh;
+}
+
+.error {
+    align-self: center;
+    padding-top: 10%;
+}
+
+.error h1 {
+    font-size: 80px;
+    text-shadow: 0 3px 0 #b2a98f,
+    0 14px 10px rgba(0, 0, 0, 0.15),
+    0 24px 2px rgba(0, 0, 0, 0.1),
+    0 34px 30px rgba(0, 0, 0, 0.1);
+}
+
+.error p {
+    font-size: 30px;
+    margin-left: 15%;
+}
+
+.link {
+    margin-left: 40%;
+}
