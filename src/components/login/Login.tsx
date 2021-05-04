@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from "react";
 import styles from "login.module.css"
 import {useDispatch, useSelector} from "react-redux";
-import {addLoginAC} from "../../state/reducers/login";
+import {addLoginAC, loginAC} from "../../state/reducers/login";
 
 
 
@@ -11,10 +11,13 @@ type FormDataType = {
     rememberMe: boolean
 }
 
+
 export const Login = () => {
     const [loginValue, setLoginValue] = useState('')
     const [passwordValue, setPasswordValue] = useState('')
+    const [remember, setRemember] = useState(false)
     const dispatch = useDispatch()
+
 
     const loginHandler = (e: ChangeEvent<HTMLInputElement>)=> {
         const login = e.currentTarget.value
@@ -24,11 +27,12 @@ export const Login = () => {
         const password = e.currentTarget.value
         setPasswordValue(password)
     }
-    const rememberMeHandler = () => {
-
+    const rememberMeHandler = (e: React.FormEvent<HTMLInputElement>) => {
+       setRemember(e.currentTarget.checked)
     }
     const onSubmit = () => {
-        dispatch(addLoginAC(loginValue, passwordValue, true))
+        // dispatch(loginThunk(loginValue, passwordValue, true))
+        dispatch(loginAC(loginValue, passwordValue, remember))
     }
 
     return (
@@ -39,7 +43,7 @@ export const Login = () => {
                 <div style={{display: "flex", flexDirection: 'column', alignItems: 'center'}}>
                     <input type='text' value={loginValue} placeholder={'login'} onChange={loginHandler}/> Login
                     <input type='password' value={passwordValue} placeholder={'password'} onChange={passwordHandler}/> Password
-                    <input type='checkbox' onChange={rememberMeHandler}/> Remember Me
+                    <input type='checkbox' onChange={rememberMeHandler} checked={remember}  /> Remember Me
                 </div>
                 </form>
                 <div>
