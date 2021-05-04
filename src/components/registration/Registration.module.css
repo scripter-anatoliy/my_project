@@ -22,3 +22,8 @@ button {
     width: 150px;
     padding: 10px;
 }
+
+.error {
+    color: red;
+    font-size: 26px;
+}
