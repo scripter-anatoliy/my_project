@@ -45,9 +45,9 @@ export const setError = (serverError: string) => (
 export const register = (email: string, password: string) => {
     return (dispatch: ThunkDispatch<appRootStateType, undefined, Action>) => {
         authAPI.register(email, password).then(response => {
-            dispatch(setRegister(response.data.email, response.data.password))
+            dispatch(setRegister(response.data.addedUser.email, response.data.addedUser.password))
         }).catch(err => {
-            dispatch(setError(err.response.data.error))
+            dispatch(setError(err.response.data.addedUser.error))
         })
     }
 }
