@@ -8,7 +8,6 @@ const instance = axios.create({
 })
 
 export const authAPI = {
-
     register(email: string, password: string) {
         return instance.post(`auth/register`, {email, password})
     },
