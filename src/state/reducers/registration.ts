@@ -7,7 +7,6 @@ const initialState = {
     email: null,
     password: null,
     serverError: null
-
 }
 
 type actionType = ReturnType<typeof setRegister> | ReturnType<typeof setError>
@@ -31,8 +30,6 @@ export const registrationReducer = (state: initialStateType = initialState, acti
                 ...action.payload
             }
     }
-
-
     return state
 }
 
