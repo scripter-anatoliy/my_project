@@ -2,8 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
     withCredentials: true,
-    baseURL: "http://localhost:7542/2.0/"
-
+    baseURL: "http://localhost:7542/2.0/",
 })
 
 export const authAPI = {
@@ -50,6 +49,14 @@ export const cardsAPI = {
     },
     updateCard(cardsPack_id: string, question: string){
         return instance.put('cards/card', {cardsPack_id, question})
+    },
+
+}
+
+export const gradeAPI = {
+
+    updateGrade(grade: 1|2|3|4|5, card_id: string){
+        return instance.put('cards/grade', {grade, card_id})
     },
 
 }
