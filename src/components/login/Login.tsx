@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from "react";
 import styles from "login.module.css"
 import {useDispatch, useSelector} from "react-redux";
-import {addLoginAC, loginAC} from "../../state/reducers/login";
+import {addLoginAC, loginAC, loginThunk} from "../../state/reducers/login";
 
 
 
@@ -13,9 +13,9 @@ type FormDataType = {
 
 
 export const Login = () => {
-    const [loginValue, setLoginValue] = useState('')
-    const [passwordValue, setPasswordValue] = useState('')
-    const [remember, setRemember] = useState(false)
+    let [loginValue, setLoginValue] = useState('Nickolay@Arbuzov.tech')
+    let [passwordValue, setPasswordValue] = useState('11111111')
+    let [remember, setRemember] = useState(false)
     const dispatch = useDispatch()
 
 
@@ -31,8 +31,8 @@ export const Login = () => {
        setRemember(e.currentTarget.checked)
     }
     const onSubmit = () => {
-        // dispatch(loginThunk(loginValue, passwordValue, true))
-        dispatch(loginAC(loginValue, passwordValue, remember))
+        dispatch(loginThunk(loginValue, passwordValue, remember))
+        // dispatch(loginAC(loginValue, passwordValue, remember))
     }
 
     return (
