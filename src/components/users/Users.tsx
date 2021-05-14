@@ -1,17 +1,17 @@
 import React, {useCallback, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {cardsTC} from "../../state/reducers/cards";
+import {usersTC} from "../../state/reducers/users";
 import {appRootStateType} from "../../state/store";
 import {Redirect} from "react-router-dom";
 import {PATH} from "../../Routes/Routes";
-import styles from "./Cards.module.css";
+import styles from "./Users.module.css";
 
-export const Cards = () => {
+export const Users = () => {
 
     const dispatch = useDispatch();
-    let cards = useSelector<appRootStateType>(state => state.cards);
+    let users = useSelector<appRootStateType>(state => state.users);
 
-    dispatch(cardsTC('question', 'answer', '6048cb6b25d4bb00042a4667', 1, 4, 1, 7));
+    dispatch(usersTC('nya', 3, 9, 1, 7));
 
     return (
         <div className={styles.container}>

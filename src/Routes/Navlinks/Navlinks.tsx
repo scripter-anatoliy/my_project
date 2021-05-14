@@ -14,6 +14,7 @@ export const Navlinks = () => {
             <NavLink className={style.link} to={PATH.SUPER_COMPONENTS}>Super Components</NavLink>
             <NavLink className={style.link} to={PATH.PACKS}>Packs</NavLink>
             <NavLink className={style.link} to={PATH.CARDS}>Cards</NavLink>
+            <NavLink className={style.link} to={PATH.USERS}>Users</NavLink>
         </div>
     )
 }

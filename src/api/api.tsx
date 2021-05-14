@@ -53,3 +53,11 @@ export const cardsAPI = {
     },
 
 }
+
+export const usersAPI = {
+
+    getUsers(userName: string, min: number, max: number, page: number, pageCount: number){
+        return instance.get(`social/users?userName=${userName}&min=${min}&max=${max}&page=${page}&pageCount=${pageCount}`)
+    },
+
+}
