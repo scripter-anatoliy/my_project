@@ -1,56 +1,43 @@
-import React, {ChangeEvent, useState} from "react";
-import styles from "login.module.css"
+import React, {useState, useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addLoginAC, loginAC, loginThunk} from "../../state/reducers/login";
-
-
-
-type FormDataType = {
-    login: string,
-    password: string,
-    rememberMe: boolean
-}
-
+import {loginTC} from "../../state/reducers/login";
+import {Redirect} from "react-router-dom";
+import {appRootStateType} from "../../state/store";
+import styles from './Login.module.css';
 
 export const Login = () => {
-    let [loginValue, setLoginValue] = useState('Nickolay@Arbuzov.tech')
-    let [passwordValue, setPasswordValue] = useState('11111111')
-    let [remember, setRemember] = useState(false)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    let isAuth = useSelector<appRootStateType>(state => state.auth._id);
+    let [email, setEmail] = useState("Nickolay@Arbuzov.tech");
+    let [password, setPassword] = useState("11111111");
+    let [rememberMe, setRememberMe] = useState(false);
 
+    const onChangeHandlerEmail = (e: React.FormEvent<HTMLInputElement>) => {
+        setEmail(e.currentTarget.value);
+    }
+    const onChangeHandlerPassword = (e: React.FormEvent<HTMLInputElement>) => {
+        setPassword(e.currentTarget.value);
+    }
+    const onChangeHandlerRememberMe = (e: React.FormEvent<HTMLInputElement>) => {
+        setRememberMe(e.currentTarget.checked);
+    }
 
-    const loginHandler = (e: ChangeEvent<HTMLInputElement>)=> {
-        const login = e.currentTarget.value
-        setLoginValue(login)
-    }
-    const passwordHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        const password = e.currentTarget.value
-        setPasswordValue(password)
-    }
-    const rememberMeHandler = (e: React.FormEvent<HTMLInputElement>) => {
-       setRemember(e.currentTarget.checked)
-    }
-    const onSubmit = () => {
-        dispatch(loginThunk(loginValue, passwordValue, remember))
-        // dispatch(loginAC(loginValue, passwordValue, remember))
-    }
+    const onClickHandler = useCallback(() => {
+        dispatch(loginTC(email, password, rememberMe))
+    },[email, password, rememberMe]);
+
+    if(isAuth) return <Redirect to={"/profile"}/>;
 
     return (
-        <div>
-            <h1>Login</h1>
-            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
-                <form>
-                <div style={{display: "flex", flexDirection: 'column', alignItems: 'center'}}>
-                    <input type='text' value={loginValue} placeholder={'login'} onChange={loginHandler}/> Login
-                    <input type='password' value={passwordValue} placeholder={'password'} onChange={passwordHandler}/> Password
-                    <input type='checkbox' onChange={rememberMeHandler} checked={remember}  /> Remember Me
-                </div>
-                </form>
-                <div>
-                    <button onClick={onSubmit}>Login</button>
-                </div>
-            </div>
-
+        <div className={styles.loginWrapper}>
+            <h2>Login</h2>
+            <h3>account</h3>
+            <input onChange={onChangeHandlerEmail} value={email}/>
+            <h3>password</h3>
+            <input type="password" onChange={onChangeHandlerPassword} value={password}/>
+            <h3>remember me</h3>
+            <input type="checkbox" title={"remember Me"} onClick={onChangeHandlerRememberMe} checked={rememberMe}/>
+            <button onClick={onClickHandler}>LogIn</button>
         </div>
     )
 }

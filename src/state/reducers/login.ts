@@ -1,40 +1,39 @@
-import {login} from "../../components/login/api";
+import {authAPI} from "../../api/api";
 import {Dispatch} from "redux";
-
-const ADD_LOGIN = 'ADD_LOGIN'
-
-export const addLoginAC = (login: string, password: string, rememberMe: boolean) => ({type: ADD_LOGIN, login, password, rememberMe})
-
-type initialStateType = {
-    login: null | string,
-    password: null | string,
-    rememberMe: null | boolean
-}
+import {isAuthAC, getProfileAC} from "./AuthReducer";
 
 const initialState = {
-    login: null,
-    password: null,
-    rememberMe: false
+    email: "",
+    password: "",
+    rememberMe: false,
 }
 
-export const loginReducer = (state: initialStateType = initialState, action: any) => {
+export const loginReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case ADD_LOGIN : {
-            return {...state, login: action.login, password: action.password, rememberMe: action.rememberMe}
-        }
+        case "LOGIN/LOGIN":
+            return {...state};
+        default:
+            return state;
     }
-return state
 }
 
-export const loginAC = (login: string, password: string, rememberMe: boolean) => ({type: ADD_LOGIN, login, password, rememberMe})
-
-export const loginThunk = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
-    return login(email, password, rememberMe)
+export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
+    return authAPI.login(email, password, rememberMe)
         .then((res) => {
-
+            if (res) {
+                dispatch(isAuthAC(res.data._id));
+                dispatch(getProfileAC(res.data.avatar, res.data.name, res.data.publicCardPacksCount));
+            }
         })
         .catch((error) => {
             
         })
 }
 
+export const loginAC = (email: string, password: string, rememberMe: boolean) => (
+    {type: "LOGIN/LOGIN", email, password, rememberMe} as const);
+
+type InitialStateType = typeof initialState;
+export type LoginType = ReturnType<typeof loginAC>;
+
+type ActionsType = LoginType;

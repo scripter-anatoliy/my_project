@@ -15,8 +15,16 @@ export const authAPI = {
     },
     updatePass(password: string, resetPasswordToken: string){
         return instance.post('auth/set-new-password', {password, resetPasswordToken})
-    }
-
+    },
+    login(email: string, password: string, rememberMe: boolean){
+        return instance.post("auth/login", {email, password, rememberMe});
+    },
+    checkAuth(){
+        return instance.post("auth/me", {});
+    },
+    logout(){
+        return instance.delete("auth/me", {});
+    },
 }
 
 export const packsAPI = {
