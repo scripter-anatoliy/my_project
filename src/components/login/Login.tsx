@@ -13,8 +13,8 @@ type FormDataType = {
 
 
 export const Login = () => {
-    let [loginValue, setLoginValue] = useState('Nickolay@Arbuzov.tech')
-    let [passwordValue, setPasswordValue] = useState('11111111')
+    let [loginValue, setLoginValue] = useState('')
+    let [passwordValue, setPasswordValue] = useState('')
     let [remember, setRemember] = useState(false)
     const dispatch = useDispatch()
 

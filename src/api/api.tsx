@@ -63,6 +63,3 @@ export const usersAPI = {
         return instance.get(`social/users?userName=${userName}&min=${min}&max=${max}&page=${page}&pageCount=${pageCount}`)
     },
 }
-
-
-}
