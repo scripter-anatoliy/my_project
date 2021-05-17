@@ -56,7 +56,7 @@ export const Registration = () => {
 
     const onSubmit = () => {
         if (passwordValue !== passwordValue2) {
-            setError('Password not equal')
+            setError('Password mismatch')
             return
         }
         dispatch(register(emailValue, passwordValue))
