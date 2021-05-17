@@ -8,6 +8,9 @@ import {Registration} from "../components/registration/Registration";
 import {SuperComponents} from "../components/superComponents/SuperComponents";
 import {Error} from "../components/error404/Error404";
 import {Nav} from "../components/nav/Nav";
+import {Packs} from "../components/packs/Packs";
+import {Cards} from "../components/cards/Cards";
+import {Users} from "../components/users/Users";
 
 export const PATH = {
     PROFILE: '/profile',
@@ -16,6 +19,9 @@ export const PATH = {
     ENTERING_NEW_PASSWORD: '/entering-new-password',
     REGISTRATION: '/registration',
     SUPER_COMPONENTS: '/super-components',
+    PACKS: '/packs',
+    CARDS: '/cards',
+    USERS: '/users',
 }
 export const Routes = () => {
     return (
@@ -28,6 +34,9 @@ export const Routes = () => {
                 <Route exact path={PATH.ENTERING_NEW_PASSWORD} component={EnteringNewPassword}/>
                 <Route exact path={PATH.REGISTRATION} component={Registration}/>
                 <Route exact path={PATH.SUPER_COMPONENTS} component={SuperComponents}/>
+                <Route exact path={PATH.PACKS} component={Packs}/>
+                <Route exact path={PATH.CARDS} component={Cards}/>
+                <Route exact path={PATH.USERS} component={Users}/>
                 <Route path='*' component={Error}/>
             </Switch>
         </div>
