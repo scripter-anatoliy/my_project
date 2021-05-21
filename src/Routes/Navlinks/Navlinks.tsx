@@ -11,7 +11,6 @@ export const Navlinks = () => {
             <NavLink className={style.link} to={PATH.PASSWORD_RECOVERY}>Password Recovery</NavLink>
             <NavLink className={style.link} to={PATH.ENTERING_NEW_PASSWORD}>Entering New Password</NavLink>
             <NavLink className={style.link} to={PATH.REGISTRATION}>Registration</NavLink>
-            <NavLink className={style.link} to={PATH.SUPER_COMPONENTS}>Super Components</NavLink>
             <NavLink className={style.link} to={PATH.PACKS}>Packs</NavLink>
             <NavLink className={style.link} to={PATH.CARDS}>Cards</NavLink>
             <NavLink className={style.link} to={PATH.USERS}>Users</NavLink>
