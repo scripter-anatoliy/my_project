@@ -11,6 +11,7 @@ const packsInitialState = {
     privatePack: false,
     id: '',
     cardPacksTotalCount: 0,
+    created: '',
 }
 
 export const packsReducer = (state: PacksInitialState = packsInitialState, action: ActionType): PacksInitialState => {

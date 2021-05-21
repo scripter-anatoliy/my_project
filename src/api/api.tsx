@@ -86,7 +86,7 @@ export type CardPackType={
     more_id: string
     name: string
     path: string
-    private: false
+    private: boolean
     rating: number
     shots: number
     type:string

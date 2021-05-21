@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getPacksTC, addPackTC, deletePackTC, updatePackTC} from "../../state/reducers/packs";
 import {CardPackType} from "../../api/api";
@@ -22,6 +22,10 @@ export const Packs = () => {
     let [privatePack, setPrivatePack] = useState(false);
     let [filterPackName, setFilterPackName] = useState("");
 
+    useEffect(() => {
+        dispatch(getPacksTC('', 0, 999, 1, 2000))
+    }, []);
+
     const onChangeHandlerAddingPackName = (e: React.FormEvent<HTMLInputElement>) => {
         setAddingPackName(e.currentTarget.value);
     }
@@ -31,12 +35,13 @@ export const Packs = () => {
     }
 
     const onClickHandlerAddingPackName = useCallback(() => {
-        dispatch(addPackTC(addingPackName, privatePack))
+        dispatch(addPackTC(addingPackName, privatePack));
+        dispatch(getPacksTC('', 0, 999, 1, 10))
     },[addingPackName, privatePack]);
 
     const onChangeHandlerFilterPackName = useCallback((e: React.FormEvent<HTMLInputElement>) => {
         setFilterPackName(e.currentTarget.value);
-        dispatch(getPacksTC(filterPackName, 3, 9, 1, 4))
+        dispatch(getPacksTC(filterPackName, 0, 999, 1, 10))
     },[filterPackName]);
     
     return (
@@ -48,7 +53,17 @@ export const Packs = () => {
             <input onChange={onChangeHandlerFilterPackName} value={filterPackName} placeholder="Filter by PackName"/>
             <div>Total Packs: {cardPacksTotalCount}</div>
             {packs.map(el => {
-                return <div>{el.name}</div>
+                return (
+                    <div>
+                        {el._id} / {el.cardsCount} / {el.created} / {el.name} /  
+                        {el.private} / {el.user_id} / {el.user_name}
+                        <button>updatePack</button> 
+                        <button onClick={(() => {
+                            dispatch(deletePackTC(el._id));
+                            dispatch(getPacksTC(filterPackName, 0, 999, 1, 10));
+                            })}>deletePack</button>
+                    </div>
+                )
             })}
             <div></div>
         </div>

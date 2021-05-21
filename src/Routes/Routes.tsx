@@ -11,6 +11,7 @@ import {Nav} from "../components/nav/Nav";
 import {Packs} from "../components/packs/Packs";
 import {Cards} from "../components/cards/Cards";
 import {Users} from "../components/users/Users";
+import {Stats} from "../components/stats/Stats";
 
 export const PATH = {
     PROFILE: '/profile',
@@ -22,6 +23,7 @@ export const PATH = {
     PACKS: '/packs',
     CARDS: '/cards',
     USERS: '/users',
+    STATS: '/stats',
 }
 export const Routes = () => {
     return (
@@ -37,6 +39,7 @@ export const Routes = () => {
                 <Route exact path={PATH.PACKS} component={Packs}/>
                 <Route exact path={PATH.CARDS} component={Cards}/>
                 <Route exact path={PATH.USERS} component={Users}/>
+                <Route exact path={PATH.STATS} component={Stats}/>
                 <Route path='*' component={Error}/>
             </Switch>
         </div>
